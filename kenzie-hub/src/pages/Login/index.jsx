@@ -1,23 +1,19 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
-// import { Form } from '../../components/Form'
+import { Link } from 'react-router-dom';
+import { Form } from '../../components/Form/style'
+import { Container } from '../../components/container/style';
+import Button from '../../components/Button';
 
 const schema = yup
   .object({
     email: yup
       .string()
-      .required('Email é obrigatório')
-      .email('Deve ser um e-mail válido'),
+      .required('Email é obrigatório'),
     password: yup
       .string()
       .required('Senha é obrigatória')
-      .matches(/[A-Z]/, 'Deve conter ao menos 1 letra maiúscula')
-      .matches(/[a-z]/, 'Deve conter ao menos 1 letra minuscula')
-      .matches(/(\d)/, 'Deve conter ao menos um número')
-      .matches(/(\W)|_/, 'Deve conter um caracter especial')
-      .matches(/.{8,}/, 'Deve ter no minimo 8 digitos'),
   })
   .required();
 
@@ -33,17 +29,32 @@ const Login = () => {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Container>
+       <h2>Kenzie Hub</h2>
+      
+      <Form onSubmit={handleSubmit(onSubmit)}>
+      <h3>Login</h3>
+
       <label htmlFor='email'>email</label>
-      <input id='email ' type='email' {...register('email')} />
+      <input id='email ' type='email' placeholder='Digite seu e-mail' {...register('email')} />
       <p>{errors.email?.message}</p>
 
       <label htmlFor='password'>senha</label>
-      <input id='password' type='password' {...register('password')} />
+      <input id='password' type='password' placeholder='********' {...register('password')} />
       <p>{errors.password?.message}</p>
 
-      <button type='submit'>cadastrar</button>
-    </form>
+      <Button variant='primary' type='submit'>Entrar</Button>
+
+      <Link to= '/register'>Ainda não possui uma conta?</Link>
+
+      <Link 
+        to= '/register' 
+        className='btn' 
+      >
+        Cadastrar
+      </Link>
+      </Form>
+    </Container>
   );
 };
 
