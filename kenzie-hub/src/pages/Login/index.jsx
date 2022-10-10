@@ -30,7 +30,9 @@ const Login = () => {
 
   return (
     <Container>
+      
        <h2>Kenzie Hub</h2>
+      
       
       <Form onSubmit={handleSubmit(onSubmit)}>
       <h3>Login</h3>
