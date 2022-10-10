@@ -19,9 +19,11 @@ export default createGlobalStyle`
     --title3: 14px;
     --headline: 12px;
     --headlineItalic: 12px;
-    --label-mobile: 9px;
+    --label-mobile: 12px;
     --bold: 700;
+    --medium: 500;
     --regular: 400;
+    --helper: 10px
  }
 
  * {
@@ -31,9 +33,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
   }
+  
   body,html{
     width: 100vw;
     height: 100vh;
+    background-color: rgba(var(--grey-4),1);
   }
   body {
     background: var(--color-background);
@@ -41,10 +45,7 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  body, input, button, textarea {
-    font-family: 'Roboto';
-    font-size: 1.6rem;
-  }
+ 
   img{
     max-width: 100%;
   }
