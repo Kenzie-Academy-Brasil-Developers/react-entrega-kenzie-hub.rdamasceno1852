@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '../../components/Form/style'
 import Button from '../../components/Button';
 import { Container } from '../../components/container/style';
@@ -13,6 +13,7 @@ import { toast } from 'react-toastify'
 
 const Register = () => {
   const [loading , setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -29,11 +30,13 @@ const Register = () => {
       const response = await api.post('users', data);    
       toast.success('Conta criada com sucesso!');
       console.log(response.data)
+      navigate('/')
       return response.data
     }
     catch (err) {
       toast.error('Ops algo deu errado')
-      console.log(err)
+      console.log(err.response.data.message)
+      
     }
     finally{
       setLoading(false)
