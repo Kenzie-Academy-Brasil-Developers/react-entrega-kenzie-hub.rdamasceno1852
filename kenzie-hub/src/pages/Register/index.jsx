@@ -1,53 +1,47 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { Form } from '../../components/Form/style'
 import Button from '../../components/Button';
 import { Container } from '../../components/container/style';
+import api from '../../services/api';
+import { registerSchema } from './registerSchema';
+import { toast } from 'react-toastify'
 
-const schema = yup
-  .object({
-    name: yup
-        .string().required('Nome obrigátório'),
-    email: yup
-      .string()
-      .required('Email é obrigatório')
-      .email('Deve ser um e-mail válido'),
-    password: yup
-      .string()
-      .required('Senha é obrigatória')
-      .matches(/[A-Z]/, 'Deve conter ao menos 1 letra maiúscula')
-      .matches(/[a-z]/, 'Deve conter ao menos 1 letra minuscula')
-      .matches(/(\d)/, 'Deve conter ao menos um número')
-      .matches(/(\W)|_/, 'Deve conter um caracter especial')
-      .matches(/.{8,}/, 'Deve ter no minimo 8 digitos'),
-      confirmPassword: yup
-      .string()
-      .oneOf(
-        [yup.ref('password')],
-        'Confirmação de senha deve ser igual a senha'
-      ),
-      bio: yup
-      .string().required('Campo obrigatório'),
-      contact: yup
-      .string().required('Contato obrigatório'),
-      module: yup
-      .string().required('Escolha um módulo')
-    })
-  .required();
+// const [newUser, setNewUser] = useState([]);
 
 const Register = () => {
+  const [loading , setLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async data => {
+    console.log(data)
+    try{
+      setLoading(true)
+      const response = await api.post('users', data);    
+      toast.success('Conta criada com sucesso!');
+      console.log(response.data)
+      return response.data
+    }
+    catch (err) {
+      toast.error('Ops algo deu errado')
+      console.log(err)
+    }
+    finally{
+      setLoading(false)
+    }
+  };
 
+  
+  
   return (
 <Container> 
     <div>
@@ -56,6 +50,7 @@ const Register = () => {
     </div>
 
     <Form onSubmit={handleSubmit(onSubmit)}>
+
 
       <h3>Crie sua conta</h3>
 
@@ -74,7 +69,7 @@ const Register = () => {
       <p>{errors.password?.message}</p>
      
       <label htmlFor='confirm password'>Confirmar Senha</label>
-      <input id='confirm password' type='password' placeholder='Confirme sua senha' {...register('password')} />
+      <input id='confirm password' type='password' placeholder='Confirme sua senha' {...register('confirm password')} />
       <p>{errors.password?.message}</p>
      
       <label htmlFor='bio'>Bio</label>
@@ -85,18 +80,16 @@ const Register = () => {
       <input id='contact' type='text' placeholder='Opção de contato' {...register('contact')} />
       <p>{errors.contact?.message}</p>
 
-      <label htmlFor='module'>Selecionar Módulo</label>
-      <select id='module' {...register('module')}>
-        <option value='m1'>M1</option>
-        <option value='m2'>M2</option>
-        <option value='m3'>M3</option>
-        <option value='m4'>M4</option>
-        <option value='m5'>M5</option>
-        <option value='m6'>M6</option>
+      <label htmlFor='course_module'>Selecionar Módulo</label>
+      <select id='course_module' {...register('course_module')}>
+        <option value='Primeiro módulo (Introdução ao Frontend)'>Primeiro módulo (Introdução ao Frontend)</option>
+        <option value='Segundo módulo (Frontend Avançado)'>Segundo módulo (Frontend Avançado)</option>
+        <option value='Terceiro módulo (Introdução ao Backend)'>Terceiro módulo (Introdução ao Backend)</option>
+        <option value='Quarto módulo (Backend Avançado'>Quarto módulo (Backend Avançado</option>
       </select>
-      <p>{errors.module?.message}</p>
+      <p>{errors.course_module?.message}</p>
 
-      <Button variant='primary' type='submit'>Cadastrar</Button>
+      <Button variant='primary' type='submit' disabled={loading}>{loading ? 'Cadastrando...' : 'Cadastrar'}</Button>
 
     </Form>
 </Container>

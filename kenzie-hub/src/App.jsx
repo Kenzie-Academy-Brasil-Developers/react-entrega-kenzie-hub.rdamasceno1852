@@ -1,6 +1,8 @@
-import Global from './styles/Global'
 import Routes from './routes/routes'
+import { ToastContainer } from 'react-toastify';
 
+import Global from './styles/Global'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
 
@@ -8,6 +10,7 @@ function App() {
     <div>
       <Global/>
       <Routes />
+      <ToastContainer />
     </div>
   )
 }
