@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 
-const RoutesMain = ({ ToastContainer, toast }) => (
+const RoutesMain = ({ toast }) => (
     <Routes>
       <Route path='/' element={<Login  toast={toast}/>}/>
       <Route path='/register' element={<Register toast={toast}/>}/>
