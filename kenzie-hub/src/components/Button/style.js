@@ -12,6 +12,12 @@ export const ButtonTypeVariations = {
         background-color: rgba(var(--color-primary-focus),1);
         
     }
+
+    & ::disabled{
+        cursor: not-allowed;
+        opacity: .5;
+    }
+
     `,
 
     disable: css`
@@ -22,6 +28,11 @@ export const ButtonTypeVariations = {
 
     & :hover {
         background-color: rgba(var(--grey-1),1);
+    }
+
+    & ::disabled{
+        cursor: not-allowed;
+        opacity: .5;
     }
     `
 }
@@ -43,9 +54,9 @@ export const Buttons = styled.button`
     @media (min-width: 768px){
         max-width: 329px;
         height: 48px;
-        
-
     }
+        
+    
 `
 
 
