@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
+import { registerSchema } from './registerSchema';
+import { Container } from '../../components/container/style';
 import { Form } from '../../components/Form/style'
 import Button from '../../components/Button';
-import { Container } from '../../components/container/style';
 import api from '../../services/api';
-import { registerSchema } from './registerSchema';
-import { toast } from 'react-toastify'
 
 // const [newUser, setNewUser] = useState([]);
 
@@ -27,7 +27,7 @@ const Register = () => {
     console.log(data)
     try{
       setLoading(true)
-      const response = await api.post('users', data);    
+      const response = await api.post('/users', data);    
       toast.success('Conta criada com sucesso!');
       console.log(response.data)
       navigate('/')
@@ -46,7 +46,7 @@ const Register = () => {
   
   
   return (
-<Container> 
+  <Container> 
     <div>
     <h2>Kenzie Hub</h2>
     <Link to='/' className='backBtn'> Voltar</Link>
@@ -101,3 +101,4 @@ const Register = () => {
 };
 
 export default Register;
+  
