@@ -9,7 +9,6 @@ export const Container = styled.div`
     gap: 15px;
 
     width: 100vw;
-    /* height: 100vh; */
 
     background-color: rgba(var(--grey-4),1);
     
@@ -24,7 +23,6 @@ export const Container = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        /* align-content: center; */
         
         width: 296px;
         
