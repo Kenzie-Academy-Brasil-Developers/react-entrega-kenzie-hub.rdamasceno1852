@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form } from '../../components/Form/style'
 import { Container } from '../../components/container/style';
 import Button from '../../components/Button';
-import loginSchema from './loginSchema';
+import loginSchema from '../../validations/loginSchema';
 import api from '../../services/api';
 import { toast } from 'react-toastify'
 import { useState } from 'react';
@@ -55,11 +55,11 @@ const Login = () => {
 
       <label htmlFor='email'>email</label>
       <input id='email ' type='email' placeholder='E-mail' {...register('email')} />
-      <p>{errors.email?.message}</p>
+      {errors.email && <p> {errors.email.message} </p>}
 
       <label htmlFor='password'>senha</label>
       <input id='password' type='password' placeholder='Senha' {...register('password')} />
-      <p>{errors.password?.message}</p>
+      {errors.password && <p> {errors.password.message} </p>}
 
       <Button variant='primary' type='submit' disabled={loading}> {loading ? 'Aguarde...' : 'Login' }</Button>
 

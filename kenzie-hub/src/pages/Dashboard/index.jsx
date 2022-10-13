@@ -1,6 +1,6 @@
 import { clear } from "@testing-library/user-event/dist/clear";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { Header, UserData } from "./style";
 
@@ -43,7 +43,7 @@ const Dashboard = () => {
         </div>
           )
           :
-          (navigate('/'))}
+          (<Navigate to='/' replace={true}/>)}
     </>
   );
 };
