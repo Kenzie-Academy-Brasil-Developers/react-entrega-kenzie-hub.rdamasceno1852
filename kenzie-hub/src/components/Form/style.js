@@ -14,18 +14,13 @@ export const Form = styled.form`
   background-color: rgba(var(--grey-3), 1);
 
   min-width: 296px;
-  /* min-height: 402px; */
   max-width: 369px;
-  max-height: 709.96px;
 
   overflow-y: auto;
 
   margin: 0 auto;
 
-  @media (min-width: 768px) {
-  max-height: 891px;
-  }
-
+ 
   h3 {
     font-size: var(--title2);
     color: rgba(var(--grey-0), 1);

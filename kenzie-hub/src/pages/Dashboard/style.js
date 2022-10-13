@@ -31,6 +31,13 @@ export const Header = styled.div`
             font-size: var(--headline);
             height: 30px;
             width: 50px;
+
+            border: none;
+
+            &:hover{
+                opacity: .8;
+                transition: .5s;
+            }
         }
 
     @media (min-width: 768px){
