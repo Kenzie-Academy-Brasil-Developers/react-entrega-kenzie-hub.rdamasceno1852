@@ -31,9 +31,7 @@ const Login = () => {
         localStorage.setItem('@Kenzie_Hub_token', response.data.token)
         localStorage.setItem('@Kenzie_Hub_id', response.data.user.id)
 
-        setTimeout(()=>{
-          navigate('/dashboard')
-        },200)
+        navigate('/dashboard')
 
         return response
       } 
