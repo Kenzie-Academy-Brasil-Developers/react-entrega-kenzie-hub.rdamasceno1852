@@ -1,4 +1,3 @@
-import { clear } from "@testing-library/user-event/dist/clear";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import api from "../../services/api";
@@ -21,7 +20,7 @@ const Dashboard = () => {
   }, []);
 
   const logout = () => {
-    const withOutToken = localStorage.clear();
+    const withOutToken = localStorage.removeItem('@Kenzie_Hub_token');
     navigate("/");
     return withOutToken;
   };
