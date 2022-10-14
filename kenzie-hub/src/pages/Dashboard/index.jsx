@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { Header, UserData } from "./style";
+import { Header, Main, UserData } from "./style";
 
 const Dashboard = () => {
   const id = localStorage.getItem("@Kenzie_Hub_id");
@@ -39,6 +39,10 @@ const Dashboard = () => {
             <h1>Olá {userProfile.name}</h1>
             <p> {userProfile.course_module}</p>
           </UserData>
+          <Main>
+            <h2>Que pena! Estamos em desenvolvimento :(</h2>
+            <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+          </Main>
         </div>
           )
           :

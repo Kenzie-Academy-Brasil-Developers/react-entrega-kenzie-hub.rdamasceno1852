@@ -90,3 +90,42 @@ export const UserData = styled.div`
         padding: 0 200px;
     }
 `
+
+export const Main = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    gap: 20px;
+
+    width: 90%;
+    
+    margin: 0 auto;
+    
+    @media (min-width: 768px){
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        
+        box-sizing: border-box;
+        
+        width: auto;
+        height: calc(100vh - 203px);
+        
+        padding: 30px 200px;
+    }
+
+    h2{
+        font-size: var(--title-1);
+        font-weight: var(--bold);
+        color: rgba(var(--grey-0),1);
+    }
+
+    p{
+        font-size: var(--headline);
+        font-weight: var(--regular);
+        color: rgba(var(--grey-0),1);
+    }
+`
