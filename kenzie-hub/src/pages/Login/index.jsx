@@ -27,7 +27,10 @@ const Login = () => {
       try {
         setLoading(true)
         const response = await api.post('/sessions', data);
-        toast.success('login feito com sucesso!')
+        toast.success('login feito com sucesso!', {
+          theme: 'dark',
+          autoClose: 1500
+        })
         localStorage.setItem('@Kenzie_Hub_token', response.data.token)
         localStorage.setItem('@Kenzie_Hub_id', response.data.user.id)
 
@@ -37,7 +40,10 @@ const Login = () => {
       } 
       catch (error) {
         console.log(error.response.data.message)
-        toast.error('Dados incorretos')
+        toast.error('Email ou senha incorretos', {
+          theme: 'dark',
+          autoClose: 1500
+        })
       }
       finally{
         setLoading(false)
@@ -55,11 +61,11 @@ const Login = () => {
 
       <label htmlFor='email'>email</label>
       <input id='email ' type='email' placeholder='E-mail' {...register('email')} />
-      {errors.email && <p> {errors.email.message} </p>}
+      {errors.email && <p className='red'> {errors.email.message} </p>}
 
       <label htmlFor='password'>senha</label>
       <input id='password' type='password' placeholder='Senha' {...register('password')} />
-      {errors.password && <p> {errors.password.message} </p>}
+      {errors.password && <p className='red'> {errors.password.message} </p>}
 
       <Button variant='primary' type='submit' disabled={loading}> {loading ? 'Aguarde...' : 'Login' }</Button>
 

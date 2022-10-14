@@ -76,15 +76,15 @@ export const Form = styled.form`
       border: 1.22px solid rgba(var(--grey-0),1);
     }
   }
-
-  p {
+  
+  .red{
+    color: rgba(var(--negative),1);
     font-size: var(--helper);
-    color: rgba(var(--grey-1),1);
     font-weight: var(--regular);
-
+  
     align-self: baseline;
     padding-left: 5%;
-
+  
     text-decoration: none;
   }
 
@@ -126,9 +126,7 @@ export const Form = styled.form`
     @media (min-width: 768px){
         max-width: 329px;
         height: 48px;
-        
-
-    }
+      } 
 
     & :hover{
       background-color: rgba(var(--color-primary-focus),1);

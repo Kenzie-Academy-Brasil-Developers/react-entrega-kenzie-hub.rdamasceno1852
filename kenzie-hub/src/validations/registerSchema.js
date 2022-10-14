@@ -15,13 +15,8 @@ export const registerSchema = yup
       .matches(/[a-z]/, 'Deve conter ao menos 1 letra minuscula')
       .matches(/(\d)/, 'Deve conter ao menos um número')
       .matches(/(\W)|_/, 'Deve conter um caracter especial')
-      .matches(/.{6,}/, 'Deve ter no minimo 6 digitos'),
-      confirmPassword: yup
-      .string()
-      .oneOf(
-        [yup.ref('password')],
-        'Confirmação de senha deve ser igual a senha'
-      ),
+      .matches(/.{8,}/, 'Deve ter no minimo 8 digitos'),
+      confirmPassword: yup.string().required('Confirmação de senha obrigatória').oneOf([yup.ref('password'), null], 'Deve ser igual a senha'),
       bio: yup
       .string().required('Campo obrigatório'),
       contact: yup
