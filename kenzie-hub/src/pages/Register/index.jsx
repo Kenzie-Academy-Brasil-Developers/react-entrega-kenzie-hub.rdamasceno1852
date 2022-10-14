@@ -28,13 +28,19 @@ const Register = () => {
     try{
       setLoading(true)
       const response = await api.post('/users', data);    
-      toast.success('Conta criada com sucesso!');
+      toast.success('Conta criada com sucesso!', {
+        theme: 'dark',
+        autoClose: 1500
+      });
       console.log(response.data)
       navigate('/')
       return response.data
     }
     catch (err) {
-      toast.error('Ops algo deu errado')
+      toast.error('Email já cadastrado', {
+        theme: 'dark',
+        autoClose: 1500
+      })
       console.log(err.response.data.message)
       
     }
@@ -61,27 +67,27 @@ const Register = () => {
 
       <label htmlFor='name'>Nome</label>
       <input id='name ' type='name' placeholder='Digite seu e-mail' {...register('name')} />
-      {errors.name && <p> {errors.name.message} </p>}
+      {errors.name && <p className='red'> {errors.name.message} </p>}
 
       <label htmlFor='email'>E-mail</label>
       <input id='email ' type='email' placeholder='Digite seu e-mail' {...register('email')} />
-      {errors.email && <p> {errors.email.message} </p>}
+      {errors.email && <p className='red'> {errors.email.message} </p>}
 
       <label htmlFor='password'>Senha</label>
       <input id='password' type='password' placeholder='Crie sua senha' {...register('password')} />
-      {errors.password && <p> {errors.password.message} </p>}
+      {errors.password && <p className='red'> {errors.password.message} </p>} 
      
-      <label htmlFor='confirm password'>Confirmar Senha</label>
-      <input id='confirm password' type='password' placeholder='Confirme sua senha' {...register('confirm password')} />
-      {errors.password && <p> {errors.password.message} </p>}
+      <label htmlFor='confirmPassword'>Confirmar Senha</label>
+      <input id='confirmPassword' type='password' placeholder='Confirme sua senha' {...register('confirmPassword')} />
+      {errors.confirmPassword && <p className='red'> {errors.confirmPassword.message} </p>}
      
       <label htmlFor='bio'>Bio</label>
       <input id='bio' type='text' placeholder='Fale sobre você' {...register('bio')} />
-      {errors.bio && <p> {errors.bio.message} </p>}
+      {errors.bio && <p className='red'> {errors.bio.message} </p>}
      
       <label htmlFor='contact'>Contato</label>
       <input id='contact' type='text' placeholder='Opção de contato' {...register('contact')} />
-      {errors.contact && <p> {errors.contact.message} </p>}
+      {errors.contact && <p className='red'> {errors.contact.message} </p>}
 
       <label htmlFor='course_module'>Selecionar Módulo</label>
       <select id='course_module' {...register('course_module')}>
@@ -90,7 +96,7 @@ const Register = () => {
         <option value='Terceiro módulo (Introdução ao Backend)'>Terceiro módulo (Introdução ao Backend)</option>
         <option value='Quarto módulo (Backend Avançado'>Quarto módulo (Backend Avançado</option>
       </select>
-      {errors.course_module && <p>{errors.course_module.message}</p>}
+      {errors.course_module && <p className='red'>{errors.course_module.message}</p>}
 
       <Button variant='primary' type='submit' disabled={loading}>{loading ? 'Cadastrando...' : 'Cadastrar'}</Button>
 
