@@ -34,6 +34,18 @@ export const ButtonTypeVariations = {
         cursor: not-allowed;
         opacity: .5;
     }
+    `,
+
+    addBtn: css`
+        width: 32px;
+        height: 32px;
+
+        background-color: rgba(var(--grey3),1);
+        text-align: center;
+
+        & :hover {
+        background-color: rgba(var(--grey-2),1);
+    }        
     `
 }
 
