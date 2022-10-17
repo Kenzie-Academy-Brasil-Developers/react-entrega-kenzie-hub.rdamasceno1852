@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom';
 import { registerSchema } from '../../validations/registerSchema';
 import { Container } from '../../components/container/style';
 import { Form } from '../../components/Form/style'
 import Button from '../../components/Button';
-import api from '../../services/api';
+import { UserContext } from '../../context/UserContext';
 
 // const [newUser, setNewUser] = useState([]);
 
+
 const Register = () => {
   const [loading , setLoading] = useState(false);
-  const navigate = useNavigate();
+  const { userRegister } = useContext(UserContext)
 
   const {
     register,
@@ -24,29 +24,7 @@ const Register = () => {
   });
 
   const onSubmit = async data => {
-    console.log(data)
-    try{
-      setLoading(true)
-      const response = await api.post('/users', data);    
-      toast.success('Conta criada com sucesso!', {
-        theme: 'dark',
-        autoClose: 1500
-      });
-      console.log(response.data)
-      navigate('/')
-      return response.data
-    }
-    catch (err) {
-      toast.error('Email já cadastrado', {
-        theme: 'dark',
-        autoClose: 1500
-      })
-      console.log(err.response.data.message)
-      
-    }
-    finally{
-      setLoading(false)
-    }
+    userRegister(data, setLoading)
   };
 
   
