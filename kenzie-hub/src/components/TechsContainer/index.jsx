@@ -1,16 +1,21 @@
-import React, { Children } from 'react'
+import { Container, HeaderContainer } from './style'
+import { AiOutlinePlus } from 'react-icons/ai'
 import Button from '../Button'
 
-const TechsContainer = ({onClick}) => {
+const TechsContainer = ({variant, onClick}) => {
   return (
-    <div>
-        <h3>{Children}</h3>
+    <Container>
+        <HeaderContainer>
+          <h3>Tecnologias</h3>
+          <Button variant={'AddButton'} onClick={onClick}>
+          <AiOutlinePlus/>
+          </Button>
+        </HeaderContainer>
 
-        <Button variant={'addBtn'} onClick={onClick}/>
         <div>
             
         </div>
-    </div>
+    </Container>
   )
 }
 

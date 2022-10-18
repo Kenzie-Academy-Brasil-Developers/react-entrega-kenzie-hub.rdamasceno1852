@@ -8,25 +8,27 @@ export const UserContext = createContext({})
 export const UserProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(localStorage.getItem('@Kenzie_Hub_token') || null
-  )
+  const [user, setUser] = useState(null)
+  const [currentRoute, setCurrentRoute] = useState(null)
   
-  // const [currentRoute, setCurrentRoute] = useState(null)
-
+  
+  
   const navigate = useNavigate()
-
+  
   useEffect(() =>{
     const loadUser = async () => {
-    
-      if(user){
+      
+      const token = localStorage.getItem('@Kenzie_Hub_token')
+      if(token){
         try {
-          api.defaults.authorization = `Bearer ${user}`
+          api.defaults.headers.authorization = `Bearer ${token}`
 
-          const { data } = await api.get('profile')
+          const { data } = await api.get('/profile')
           setUser(data)
+          navigate(currentRoute)
         } catch (error) {
-          console.error(error)
-          localStorage.removeItem('@Kenzie_Hub_token')
+          console.log(error)
+          // localStorage.removeItem('@Kenzie_Hub_token')
         } 
       }
       setLoading(false)
@@ -43,12 +45,11 @@ export const UserProvider = ({ children }) => {
   const userLogin = async (data) => {
     setLoading(true)
       try {
-        const response = await api.post('sessions', data);
+        const response = await api.post('/sessions', data);
         toast.success('login feito com sucesso!', {
           theme: 'dark',
           autoClose: 1500
         })
-        console.log(response)
         localStorage.setItem('@Kenzie_Hub_token', response.data.token)
         setUser(response.data.user)
   
@@ -73,7 +74,7 @@ export const UserProvider = ({ children }) => {
     const userRegister = async (data, setLoading) => {
     try{
       setLoading(true)
-      const response = await api.post('users', data);    
+      const response = await api.post('/users', data);    
       toast.success('Conta criada com sucesso!', {
         theme: 'dark',
         autoClose: 1500
@@ -96,7 +97,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return(
-        <UserContext.Provider value={{ userLogin, userRegister, userLogout, user, setUser } }>
+        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute } }>
             {children}
         </UserContext.Provider>
     )

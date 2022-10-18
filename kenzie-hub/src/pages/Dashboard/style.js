@@ -94,12 +94,14 @@ export const UserData = styled.div`
 export const Main = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
 
     gap: 20px;
 
-    width: 90%;
+    padding: 20px 0;
+    width: 100%;
+    height: calc(100vh - 203px);
     
     margin: 0 auto;
     
