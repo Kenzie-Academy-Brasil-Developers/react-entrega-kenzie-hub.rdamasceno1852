@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import TechsContainer from "../../components/TechsContainer";
+import List from "../../components/TechsContainer/List";
 import { UserContext } from "../../context/UserContext";
-import api from "../../services/api";
 import { Header, Main, UserData } from "./style";
+
 
 
 const Dashboard = () => {
 
-  const {userLogout, user, setUser} = useContext(UserContext)
+  const {userLogout, user} = useContext(UserContext)
   
- 
-
   return (
     <>
     {user ?
@@ -26,8 +26,9 @@ const Dashboard = () => {
             <p> {user.course_module}</p>
           </UserData>
           <Main>  
-            <h2>Que pena! Estamos em desenvolvimento :(</h2>
-            <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+              <TechsContainer>
+                <List/>
+              </TechsContainer>
           </Main>
         </div>
           )
