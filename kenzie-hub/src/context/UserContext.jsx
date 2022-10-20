@@ -10,6 +10,7 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null)
   const [currentRoute, setCurrentRoute] = useState(null)
+  const [userTechs, setUserTechs] = useState([])
   
   
   
@@ -25,6 +26,7 @@ export const UserProvider = ({ children }) => {
 
           const { data } = await api.get('/profile')
           setUser(data)
+          setUserTechs(data.techs)
           navigate(currentRoute)
         } catch (error) {
           console.log(error)
@@ -52,6 +54,8 @@ export const UserProvider = ({ children }) => {
         })
         localStorage.setItem('@Kenzie_Hub_token', response.data.token)
         setUser(response.data.user)
+        setUserTechs(data.techs)
+
   
         navigate('/dashboard', {
           replace: true
@@ -97,7 +101,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return(
-        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute } }>
+        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute, userTechs, setUserTechs} }>
             {children}
         </UserContext.Provider>
     )

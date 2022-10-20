@@ -4,7 +4,7 @@ const Empty = () => {
   return (
     <>
         <EmptyCard>
-          Você ainda não cadastrou uma tecnolia
+          Você ainda não cadastrou uma tecnologia
         </EmptyCard>
     </>
   )

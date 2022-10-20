@@ -5,16 +5,19 @@ export const CardsList = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     gap: 11.43px;
+    margin-top: 30px;
 
-    width: 90%;
+    
+    width: 110%;
     max-height: 298px;
-
-    background-color: rgba(var(--grey3),1);
-
+    
+    background: rgba(var(--grey-3),1);
+    
     @media (min-width: 768px) {
-        width: auto;
-    }
-
-`
+        box-sizing: border-box;
+        width: 48.7rem;
+        max-height: 500px;
+        gap: 11.43px;
+    }    
+    `

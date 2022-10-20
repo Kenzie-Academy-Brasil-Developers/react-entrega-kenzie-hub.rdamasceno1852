@@ -10,8 +10,7 @@ export const Container = styled.div`
     margin: 0 auto;
 
     @media (min-width:768px) {
-        width: 100vh;
-        padding: 0 200px;
+        max-width: 780px;
     }
 
 `
@@ -22,14 +21,19 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    width: 100%;
+    /* outline: 2px solid red; */
+
+    width: 110%;
     max-height: 517px;
 
-    color: rgba(var(--white),1);
+    
+    @media (min-width:868px) {
+        max-width: 780px;
+    }
+    
+    > h3{
+        color: var(--white);
 
-    @media (min-width:768px) {
-        width: 100vw;
-        padding: 0 200px;
     }
 
     > Button{
@@ -38,10 +42,17 @@ export const HeaderContainer = styled.div`
         width: 32px;
         height: 32px;
         text-align: center;
+
+        background-color: rgba(var(--grey-3),1);
+
+        color: var(--white);
         
-        & :hover {
-            
-            background-color: rgba(var(--grey-2),1);
+        >svg{
+            font-size: var(--title1);
+        }
+        
+        & :hover {      
+            background-color: rgba(var(--grey-3),1);
         }  
     }
     `
