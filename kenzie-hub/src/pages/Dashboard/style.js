@@ -46,9 +46,8 @@ export const Header = styled.div`
         justify-content: space-between;
         align-items: center;
 
-        width: auto;
+        max-width: 780px;
 
-        padding: 0 200px;
     }
 `
 export const UserData = styled.div`
@@ -60,7 +59,7 @@ export const UserData = styled.div`
     gap: 10px;
 
     width: 90%;
-    height: 131px;
+    height: 120px;
     
     margin: 0 auto;
     border-bottom: 1px solid rgba(var(--grey-2),1);
@@ -85,22 +84,20 @@ export const UserData = styled.div`
 
         box-sizing: border-box;
 
-        width: auto;
-
-        padding: 0 200px;
+        max-width: 780px;
     }
 `
 
 export const Main = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
 
     gap: 20px;
 
+    padding: 20px 0;
     width: 90%;
-    
     margin: 0 auto;
     
     @media (min-width: 768px){
@@ -111,10 +108,8 @@ export const Main = styled.div`
         
         box-sizing: border-box;
         
-        width: auto;
-        height: calc(100vh - 203px);
-        
-        padding: 30px 200px;
+        max-width: 780px;
+        /* height: calc(100vh - 203px); */
     }
 
     h2{
