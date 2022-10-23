@@ -3,15 +3,11 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import Button from '../Button'
 import { useContext } from 'react'
 import List from './List'
-import { UserContext } from '../../context/UserContext'
-import Cards from './List/Cards'
-import Empty from './List/EmptyCard'
 import { TechContext } from '../../context/TechContext'
 
-const TechsContainer = ({variant, }) => {
+const TechsContainer = () => {
 
   const { openModal } = useContext(TechContext)
-  const { user } = useContext(UserContext)
 
   return (
     <Container>
@@ -21,13 +17,7 @@ const TechsContainer = ({variant, }) => {
           <AiOutlinePlus/>
           </Button>
         </HeaderContainer>
-        <List>
-          {user.techs.length > 0? (
-            <Cards/>
-          ) : (
-            <Empty/>
-          )}
-        </List>
+        <List/>          
     </Container>
   )
 }

@@ -21,6 +21,23 @@ export const TechProvider = ({ children }) => {
         setOpenFormModal(false)
     )
 
+        const loadUser = async () => {
+        
+            const token = localStorage.getItem('@Kenzie_Hub_token')
+            if(token){
+            try {
+                api.defaults.headers.authorization = `Bearer ${token}`
+    
+                const { data } = await api.get('/profile')
+                console.log(data);
+                setUserTechs(data.techs)
+        
+            } catch (error) {
+                console.log(error)
+                // localStorage.removeItem('@Kenzie_Hub_token')
+            } 
+            }
+        }
     const registerTech = async (data) => {
         
         try {
@@ -29,7 +46,9 @@ export const TechProvider = ({ children }) => {
         theme: 'dark',
         autoClose: 1500
     } )
-        setUserTechs([...userTechs, response.data])
+        loadUser()   
+        console.log(response.data, userTechs);
+        // setUserTechs([...userTechs, response.data])
         setOpenFormModal(false)
       } catch (error) {
         toast.error(error, {
@@ -43,6 +62,7 @@ export const TechProvider = ({ children }) => {
 
         try {
             console.log(current);
+            // eslint-disable-next-line no-unused-vars
             const response = await api.delete(`/users/techs/${current}`)
             const removeTech = userTechs.filter(el => el.id !== current)
             console.log(removeTech)

@@ -30,12 +30,13 @@ export const UserProvider = ({ children }) => {
           navigate(currentRoute)
         } catch (error) {
           console.log(error)
-          // localStorage.removeItem('@Kenzie_Hub_token')
+          localStorage.removeItem('@Kenzie_Hub_token')
         } 
       }
       setLoading(false)
     }
     loadUser()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
           
   const userLogout = () => {
@@ -101,7 +102,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return(
-        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute, userTechs, setUserTechs} }>
+        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute, userTechs, setUserTechs } }>
             {children}
         </UserContext.Provider>
     )
