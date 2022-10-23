@@ -3,15 +3,16 @@ import { TechContext } from '../../../../context/TechContext'
 import { UserContext } from '../../../../context/UserContext'
 import { Card } from './style'
 import {FaTrashAlt} from 'react-icons/fa'
+import Empty from '../EmptyCard'
 
 const Cards = () => {
     
-    const { userTechs} = useContext(UserContext)
+    const { userTechs } = useContext(UserContext)
     const { deleteTech } = useContext(TechContext)    
 
     return (
-    <>
-    {userTechs?.map(tech => 
+        <>{userTechs.length > 0 ? (
+        userTechs.map(tech => 
         <Card key={tech.id}>
             <h3>{tech.title}</h3>
             <div>
@@ -19,7 +20,9 @@ const Cards = () => {
             <button onClick={() => deleteTech(tech.id)}><FaTrashAlt/></button>
             </div>
         </Card>
-    )}       
+    )):(
+        <Empty/>
+    )}    
     </>
     )
 }
