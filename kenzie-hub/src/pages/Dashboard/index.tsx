@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TechsContainer from "../../components/TechsContainer";
-import List from "../../components/TechsContainer/List";
 import { UserContext } from "../../context/UserContext";
 import { Header, Main, UserData } from "./style";
 
