@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { iLoginForm } from '../pages/Login'
 import { iRegisterForm } from '../pages/Register'
 import api from '../services/api'
+import { iUserTechs } from './TechContext'
 
 export const UserContext = createContext({} as iUserContext)
 
@@ -16,8 +17,8 @@ interface iUserContext{
   setUser: React.Dispatch<React.SetStateAction<iUser | null>>
   currentRoute: string | null
   setCurrentRoute: React.Dispatch<React.SetStateAction<string | null>>
-  userTechs: iTechs[]
-  setUserTechs: React.Dispatch<React.SetStateAction<iTechs[]>>
+  userTechs: iUserTechs[]
+  setUserTechs: React.Dispatch<React.SetStateAction<iUserTechs[]>>
 }
 
 export interface iTechs{
@@ -34,7 +35,7 @@ export interface iUser{
   contact:string
   created_at: string
   updated_at: string
-  techs: iTechs[]
+  techs: iUserTechs[]
 }
 
 interface iUserProviderProps{
@@ -46,7 +47,7 @@ export const UserProvider = ({ children }:iUserProviderProps) => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<iUser | null>(null)
   const [currentRoute, setCurrentRoute] = useState<string | null>(null)
-  const [userTechs, setUserTechs] = useState<iTechs[]>([] as iTechs[])
+  const [userTechs, setUserTechs] = useState<iUserTechs[]>([] as iUserTechs[])
   
   
   

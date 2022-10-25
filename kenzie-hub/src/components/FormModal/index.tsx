@@ -2,8 +2,14 @@ import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { newTechSchema } from "../../validations/newTechSchema";
 import { useForm } from "react-hook-form";
-import { TechContext } from "../../context/TechContext";
+import { iUserTechs, TechContext } from "../../context/TechContext";
 import { Overlay, Container, Header, FormContainer, CloseIcon } from "./style";
+
+
+export interface iTechs{
+  title: string
+  status: string
+} 
 
 const FormModal = () => {
   const { closeModal, registerTech } = useContext(TechContext);
@@ -12,7 +18,7 @@ const FormModal = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iUserTechs>({
     resolver: yupResolver(newTechSchema),
   });
 

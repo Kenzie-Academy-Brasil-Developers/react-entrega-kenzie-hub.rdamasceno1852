@@ -27,9 +27,7 @@ const Dashboard = () => {
             <p> {user.course_module}</p>
           </UserData>
           <Main>  
-              <TechsContainer>
-                <List/>
-              </TechsContainer>
+              <TechsContainer/>
           </Main>
         </div>
           )

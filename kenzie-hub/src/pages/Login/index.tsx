@@ -26,7 +26,8 @@ const Login = () => {
   });
 
   const onSubmit = async (data: iLoginForm) => {
-    userLogin(data, setLoading);
+    setLoading(true)
+    userLogin(data);
   };
 
   return (
