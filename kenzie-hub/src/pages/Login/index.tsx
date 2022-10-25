@@ -1,4 +1,4 @@
-  import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { Form } from "../../components/Form/style";
@@ -8,6 +8,11 @@ import loginSchema from "../../validations/loginSchema";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 
+export interface iLoginForm {
+  email: string;
+  password: string;
+}
+
 const Login = () => {
   const { userLogin } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
@@ -16,11 +21,11 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iLoginForm>({
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: iLoginForm) => {
     userLogin(data, setLoading);
   };
 

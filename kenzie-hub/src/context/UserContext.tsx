@@ -1,16 +1,52 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, ReactNode, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { iLoginForm } from '../pages/Login'
+import { iRegisterForm } from '../pages/Register'
 import api from '../services/api'
 
-export const UserContext = createContext({})
+export const UserContext = createContext({} as iUserContext)
 
-export const UserProvider = ({ children }) => {
+interface iUserContext{
+  userLogin: (data: iLoginForm) => void
+  userLogout: () => void
+  loading: boolean 
+  userRegister: (data: iRegisterForm , setLoading: React.Dispatch<React.SetStateAction<boolean>>) => void 
+  user: iUser | null
+  setUser: React.Dispatch<React.SetStateAction<iUser | null>>
+  currentRoute: string | null
+  setCurrentRoute: React.Dispatch<React.SetStateAction<string | null>>
+  userTechs: iTechs[]
+  setUserTechs: React.Dispatch<React.SetStateAction<iTechs[]>>
+}
+
+export interface iTechs{
+  title: string
+  status: string
+} 
+
+export interface iUser{
+  id: string;
+  name: string
+  email: string
+  course_module: string 
+  bio: string
+  contact:string
+  created_at: string
+  updated_at: string
+  techs: iTechs[]
+}
+
+interface iUserProviderProps{
+  children: ReactNode
+}
+
+export const UserProvider = ({ children }:iUserProviderProps) => {
 
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState(null)
-  const [currentRoute, setCurrentRoute] = useState(null)
-  const [userTechs, setUserTechs] = useState([])
+  const [user, setUser] = useState<iUser | null>(null)
+  const [currentRoute, setCurrentRoute] = useState<string | null>(null)
+  const [userTechs, setUserTechs] = useState<iTechs[]>([] as iTechs[])
   
   
   
@@ -27,7 +63,9 @@ export const UserProvider = ({ children }) => {
           const { data } = await api.get('/profile')
           setUser(data)
           setUserTechs(data.techs)
-          navigate(currentRoute)
+          if(currentRoute){
+            navigate(currentRoute)
+          }
         } catch (error) {
           console.log(error)
           localStorage.removeItem('@Kenzie_Hub_token')
@@ -39,13 +77,13 @@ export const UserProvider = ({ children }) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
           
-  const userLogout = () => {
+  const userLogout = ():void => {
     setUser(null)
     navigate('/')
     localStorage.removeItem('@Kenzie_Hub_token')
   }
 
-  const userLogin = async (data) => {
+  const userLogin = async (data: iLoginForm) => {
     setLoading(true)
       try {
         const response = await api.post('/sessions', data);
@@ -55,17 +93,15 @@ export const UserProvider = ({ children }) => {
         })
         localStorage.setItem('@Kenzie_Hub_token', response.data.token)
         setUser(response.data.user)
-        setUserTechs(data.techs)
+        setUserTechs(response.data.user.techs)
 
   
         navigate('/dashboard', {
           replace: true
         })
         setLoading(false)
-        return response
       } 
       catch (error) {
-        console.log(error.response.data.message)
         toast.error('Email ou senha incorretos', {
           theme: 'dark',
           autoClose: 1500
@@ -76,7 +112,7 @@ export const UserProvider = ({ children }) => {
       }
     };
 
-    const userRegister = async (data, setLoading) => {
+    const userRegister = async (data: iRegisterForm , setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
     try{
       setLoading(true)
       const response = await api.post('/users', data);    
@@ -93,7 +129,6 @@ export const UserProvider = ({ children }) => {
         theme: 'dark',
         autoClose: 1500
       })
-      console.log(err.response.data.message)
       
     }
     finally{
@@ -102,7 +137,19 @@ export const UserProvider = ({ children }) => {
     }
 
     return(
-        <UserContext.Provider value={{ loading, userLogin, userRegister, userLogout, user, setUser, currentRoute, setCurrentRoute, userTechs, setUserTechs } }>
+        <UserContext.Provider value={{ 
+            loading, 
+            userLogin, 
+            userRegister, 
+            userLogout, 
+            user, 
+            setUser, 
+            currentRoute, 
+            setCurrentRoute, 
+            userTechs, 
+            setUserTechs 
+            }}
+            >
             {children}
         </UserContext.Provider>
     )
