@@ -178,7 +178,7 @@ export const Form = styled.form`
       border: 1.22px solid rgba(var(--grey-0),1);
     }
 
-    
+  }    
 `;
 
 

@@ -1,6 +1,13 @@
-import styled, { css } from "styled-components";
+import styled, { css, FlattenSimpleInterpolation } from "styled-components";
 
-export const ButtonTypeVariations = {
+interface iButtonsProps{
+    variant?: string  
+}
+interface iButtonTypeVariations{
+    [ key: string ]: FlattenSimpleInterpolation;
+}
+
+export const ButtonTypeVariations: iButtonTypeVariations = {
 
     primary: css`  
     background-color: rgba(var(--color-primary),1);
@@ -49,8 +56,8 @@ border: none;
 }
 
 
-export const Buttons = styled.button`
-  ${({ variant }) => ButtonTypeVariations[variant || 'primary']}
+export const Buttons = styled.button<iButtonsProps>`
+  ${({ variant }) => ButtonTypeVariations[ variant || 'primary' ]}
   
     width: 90%;
     height: 35px;

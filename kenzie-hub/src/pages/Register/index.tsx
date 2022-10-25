@@ -10,6 +10,15 @@ import { UserContext } from '../../context/UserContext';
 
 // const [newUser, setNewUser] = useState([]);
 
+export interface iRegisterForm {
+  name: string
+  email: string
+  password: string
+  confirmPassword: string
+  bio: string
+  contact: string
+  course_module: string
+}
 
 const Register = () => {
   const [loading , setLoading] = useState(false);
@@ -18,12 +27,12 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
+    formState:{ errors },
+  } = useForm<iRegisterForm>({
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit = async data => {
+  const onSubmit = async (data: iRegisterForm) => {
     userRegister(data, setLoading)
   };
 

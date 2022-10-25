@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import Button from "../../components/Button";
 import TechsContainer from "../../components/TechsContainer";
 import List from "../../components/TechsContainer/List";
 import { UserContext } from "../../context/UserContext";
@@ -17,9 +18,9 @@ const Dashboard = () => {
         (<div>
           <Header> 
             <h2>Kenzie Hub</h2>
-            <button variant={"disable"} onClick={userLogout}>
+            <Button variant={"disable"} onClick={userLogout}>
               Sair
-            </button>
+            </Button>
           </Header>
           <UserData>
             <h1>Olá {user.name}</h1>
