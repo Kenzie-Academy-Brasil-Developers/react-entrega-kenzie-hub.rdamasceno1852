@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import FormModal from "../components/FormModal";
 import api from "../services/api";
-import { iTechs, UserContext } from "./UserContext";
+import { UserContext } from "./UserContext";
 
 export const TechContext = createContext({} as iTechContext)
 
@@ -16,13 +16,21 @@ interface iTechContext{
     setOpenFormModal: React.Dispatch<React.SetStateAction<boolean>>
     openModal: () => void
     closeModal: () => void
-    registerTech: (data: iTechs) => Promise<void>
-    deleteTech: (current: iTechs) => Promise<void>
+    registerTech: (data: iUserTechs) => Promise<void>
+    deleteTech: (id: string) => Promise<void>
     
 }
 
 interface iTechProviderProps {
     children: ReactNode
+}
+
+export interface iUserTechs{
+    id: string
+    title:string 
+    status:string
+    created_at:string
+    updated_at:string
 }
 
 export const TechProvider = ({ children }: iTechProviderProps) => {
@@ -49,6 +57,7 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
                 const { data } = await api.get('/profile')
                 console.log(data);
                 setUserTechs(data.techs)
+                
         
             } catch (error) {
                 console.log(error)
@@ -57,7 +66,7 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
             }
     }
 
-    const registerTech = async (data: iTechs) => {
+    const registerTech = async (data: iUserTechs) => {
         
         try {
             await api.post('/users/techs', data)
@@ -80,12 +89,12 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
     }
     
 
-    const deleteTech = async (current: iTechs) => {
+    const deleteTech = async (id: string) => {
 
         try {
-            console.log(current);
-            await api.delete(`/users/techs/${current}`)
-            const removeTech = userTechs.filter(el => el.id !== current)
+            // console.log(current);
+            await api.delete(`/users/techs/${id}`)
+            const removeTech = userTechs.filter(el => el.id !== id)
             console.log(removeTech)
             setUserTechs(removeTech)
         } catch (error) {

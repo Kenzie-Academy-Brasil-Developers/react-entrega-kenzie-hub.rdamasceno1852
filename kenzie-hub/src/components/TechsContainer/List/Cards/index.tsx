@@ -13,7 +13,7 @@ const Cards = () => {
     return (
         <>{userTechs.length > 0 ? (
         userTechs.map(tech => 
-        <Card>
+        <Card key={tech.id}>
             <h3>{tech.title}</h3>
             <div>
             <p>{tech.status}</p>
