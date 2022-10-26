@@ -61,7 +61,6 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
         
             } catch (error) {
                 console.log(error)
-                // localStorage.removeItem('@Kenzie_Hub_token')
             } 
             }
     }
@@ -69,16 +68,23 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
     const registerTech = async (data: iUserTechs) => {
         
         try {
-            await api.post('/users/techs', data)
-            toast.success(
-                'Tecnologia criada com sucesso!',{
-                theme: 'dark',
-                autoClose: 1500
-            })
-            loadUser()   
-             // console.log(response.data, userTechs);
-            // setUserTechs([...userTechs, response.data])
-            setOpenFormModal(false)
+            if(!userTechs.find(tech => (
+                tech.title.toLowerCase() === data.title.toLowerCase()
+            ))){
+                await api.post('/users/techs', data)
+                toast.success(
+                    'Tecnologia criada com sucesso!',{
+                    theme: 'dark',
+                    autoClose: 1500
+                })
+                loadUser()   
+                setOpenFormModal(false)}
+                else{
+                   toast.warn('tecnologia já cadastrada',{
+                    theme: 'dark',
+                    autoClose: 2000
+                   })
+                }
         } catch (error) {
         const resquestError = error as AxiosError<iApiError>
         toast.error(resquestError.response?.data.error, {
@@ -92,10 +98,13 @@ export const TechProvider = ({ children }: iTechProviderProps) => {
     const deleteTech = async (id: string) => {
 
         try {
-            // console.log(current);
             await api.delete(`/users/techs/${id}`)
             const removeTech = userTechs.filter(el => el.id !== id)
             console.log(removeTech)
+            toast.success('Tecnologia excluida', {
+                theme: 'dark',
+                autoClose: 1500
+            })
             setUserTechs(removeTech)
         } catch (error) {
             console.error(error)

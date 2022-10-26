@@ -43,9 +43,9 @@ const FormModal = () => {
 
           <label htmlFor="status">Selecionar Stauts</label>
           <select id="status" {...register("status")}>
-            <option value="Iniciante">Iniciante</option>
-            <option value="Intermediario">Intermediário</option>
-            <option value="Avançado">Avançado</option>
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+            <option value="avançado">Avançado</option>
           </select>
           <button type="submit">Cadastrar Tecnologia</button>
         </FormContainer>

@@ -5,8 +5,6 @@ import TechsContainer from "../../components/TechsContainer";
 import { UserContext } from "../../context/UserContext";
 import { Header, Main, UserData } from "./style";
 
-
-
 const Dashboard = () => {
 
   const {userLogout, user} = useContext(UserContext)
