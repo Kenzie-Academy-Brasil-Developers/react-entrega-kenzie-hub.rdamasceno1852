@@ -29,6 +29,7 @@ export const Container = styled.div`
 
   margin: 0 auto;
 
+  max-width: 345px;
   width: 90%;
   height: 300px;
 

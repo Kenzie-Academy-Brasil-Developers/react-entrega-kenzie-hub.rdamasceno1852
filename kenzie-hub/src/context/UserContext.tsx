@@ -57,7 +57,9 @@ export const UserProvider = ({ children }:iUserProviderProps) => {
     const loadUser = async () => {
       
       const token = localStorage.getItem('@Kenzie_Hub_token')
+      
       if(token){
+        console.log(token);
         try {
           api.defaults.headers.authorization = `Bearer ${token}`
 
@@ -76,7 +78,7 @@ export const UserProvider = ({ children }:iUserProviderProps) => {
     }
     loadUser()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [loading])
           
   const userLogout = ():void => {
     setUser(null)

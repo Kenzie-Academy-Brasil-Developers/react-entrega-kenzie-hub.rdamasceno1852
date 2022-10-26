@@ -7,7 +7,7 @@ const ProtectedRoutes = () => {
   const location = useLocation()
 
     if(loading){
-      <h1>Carregando...</h1>
+     return <h1>Carregando...</h1>
     }
     return user ? <Outlet/> : <Navigate to='/' replace state={{from: location}} /> 
    
