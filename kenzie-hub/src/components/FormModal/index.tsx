@@ -21,6 +21,7 @@ const FormModal = () => {
   } = useForm<iUserTechs>({
     resolver: yupResolver(newTechSchema),
   });
+  
 
   return (
     <Overlay>
@@ -31,7 +32,7 @@ const FormModal = () => {
             <CloseIcon />
           </button>
         </Header>
-        <FormContainer onClick={handleSubmit(registerTech)}>
+        <FormContainer onSubmit ={handleSubmit(registerTech)}>
           <label htmlFor="title">Nome:</label>
           <input
             id="title"
@@ -41,13 +42,15 @@ const FormModal = () => {
           />
           {errors.title && <p className="red"> {errors.title.message} </p>}
 
-          <label htmlFor="status">Selecionar Stauts</label>
+          <label htmlFor="status">Selecionar Status</label>
           <select id="status" {...register("status")}>
             <option value="iniciante">Iniciante</option>
             <option value="intermediario">Intermediário</option>
             <option value="avançado">Avançado</option>
           </select>
+   
           <button type="submit">Cadastrar Tecnologia</button>
+      
         </FormContainer>
       </Container>
     </Overlay>

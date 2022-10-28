@@ -153,6 +153,8 @@ select {
 width: 90%;
 height: 38px;
 
+z-index: 100;
+
 border-radius: 4px;
 
 

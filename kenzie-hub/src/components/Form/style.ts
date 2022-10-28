@@ -14,11 +14,14 @@ export const Form = styled.form`
   background-color: rgba(var(--grey-3), 1);
 
   min-width: 296px;
-  max-width: 369px;
 
   overflow-y: auto;
 
   margin: 0 auto;
+  @media (min-width: 768px) {
+  width: 330px;
+    
+  }
 
  
   h3 {
@@ -27,6 +30,7 @@ export const Form = styled.form`
 
     @media (min-width: 768px) {
       font-size: var(--title1);
+
     }
   }
 
@@ -124,7 +128,6 @@ export const Form = styled.form`
 
 
     @media (min-width: 768px){
-        max-width: 329px;
         height: 48px;
       } 
 

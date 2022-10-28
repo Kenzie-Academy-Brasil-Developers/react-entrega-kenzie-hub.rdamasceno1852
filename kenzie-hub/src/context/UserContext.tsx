@@ -49,8 +49,6 @@ export const UserProvider = ({ children }:iUserProviderProps) => {
   const [currentRoute, setCurrentRoute] = useState<string | null>(null)
   const [userTechs, setUserTechs] = useState<iUserTechs[]>([] as iUserTechs[])
   
-  
-  
   const navigate = useNavigate()
   
   useEffect(() =>{

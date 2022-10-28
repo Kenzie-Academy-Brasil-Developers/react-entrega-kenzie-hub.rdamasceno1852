@@ -13,14 +13,33 @@ export const Card = styled.li`
 
     background-color: rgba(var(--grey4),1);
 
-    & :hover{
+    color: rgba(var(--grey-0),1);
+    
+    @media(min-width: 768px){
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+        text-align: center;
+
+        width: 95%;
+        height: 49px;
+
+        background-color: rgba(var(--grey-4),1);
+
+        margin: 10px auto;
+        box-sizing: border-box;
+
+        padding: 0 25.3px;
+
+        & :hover{
         background-color: rgba(var(--grey2),1);
+        cursor: pointer;
+        }
     }
     
-    color: rgba(var(--grey-0),1);
-
     div{
-
+        
         display: flex;
         justify-content: center;
         align-items: center;
@@ -40,22 +59,5 @@ export const Card = styled.li`
     }
 
 
-    @media(min-width: 768px){
-        display: flex;
-        justify-content: space-between;
-        align-content: center;
-
-        text-align: center;
-
-        width: 95%;
-        height: 49px;
-
-        background-color: rgba(var(--grey-4),1);
-
-        margin: 10px auto;
-        box-sizing: border-box;
-
-        padding: 0 25.3px;
-    }
 
 `

@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import loginSchema from "../../validations/loginSchema";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+// import { Input } from "../../components/Input";
 
 export interface iLoginForm {
   email: string;
@@ -26,7 +27,7 @@ const Login = () => {
   });
 
   const onSubmit = async (data: iLoginForm) => {
-    setLoading(true)
+    setLoading(true);
     userLogin(data);
   };
 
@@ -37,26 +38,15 @@ const Login = () => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <h3>Login</h3>
 
-        <label htmlFor="email">email</label>
-        <input
-          id="email "
-          type="email"
-          placeholder="E-mail"
-          {...register("email")}
-        />
-        {errors.email && <p className="red"> {errors.email.message} </p>}
+        <label htmlFor='email'>E-mail</label>
+        <input id='email ' type='email' placeholder='Digite seu e-mail' {...register('email')} />
+        {errors.email && <p className='red'> {errors.email.message} </p>}
 
-        <label htmlFor="password">senha</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Senha"
-          {...register("password")}
-        />
-        {errors.password && <p className="red"> {errors.password.message} </p>}
+        <label htmlFor='password'>Senha</label>
+        <input id='password' type='password' placeholder='Digite sua senha' {...register('password')} />
+        {errors.password && <p className='red'> {errors.password.message} </p>}
 
         <Button variant="primary" type="submit" disabled={loading}>
-          {" "}
           {loading ? "Aguarde..." : "Login"}
         </Button>
 
