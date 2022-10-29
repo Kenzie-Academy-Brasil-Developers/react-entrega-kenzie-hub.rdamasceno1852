@@ -5,12 +5,6 @@ import { useForm } from "react-hook-form";
 import { iUserTechs, TechContext } from "../../context/TechContext";
 import { Overlay, Container, Header, FormContainer, CloseIcon } from "./style";
 
-
-export interface iTechs{
-  title: string
-  status: string
-} 
-
 const FormModal = () => {
   const { closeModal, registerTech } = useContext(TechContext);
 
