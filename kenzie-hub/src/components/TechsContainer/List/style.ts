@@ -17,7 +17,7 @@ export const CardsList = styled.ul`
     @media (min-width: 768px) {
         box-sizing: border-box;
         width: 48.7rem;
-        max-height: 500px;
+        max-height: -webkit-max-content;
         gap: 11.43px;
     }    
     `

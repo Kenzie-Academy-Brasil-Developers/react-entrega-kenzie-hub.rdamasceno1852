@@ -21,11 +21,6 @@ interface iUserContext{
   setUserTechs: React.Dispatch<React.SetStateAction<iUserTechs[]>>
 }
 
-export interface iTechs{
-  title: string
-  status: string
-} 
-
 export interface iUser{
   id: string;
   name: string
